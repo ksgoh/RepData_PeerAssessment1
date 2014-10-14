@@ -107,7 +107,8 @@ summary (sumbydate$x, digits = 5)
 ```r
 avebyinterval <- aggregate(df$steps, by=list(interval=df$interval), FUN=mean, na.rm=TRUE)
 par(mar=c(5,4,4,2))
-plot (avebyinterval$interval, avebyinterval$x, type="l", xlab="5-minute interval", ylab="Average number of steps")
+plot (avebyinterval$interval, avebyinterval$x, type="l", xlab="5-minute interval", 
+      ylab="Average number of steps")
 ```
 
 ![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4.png) 
@@ -165,7 +166,8 @@ ndf[is.na(ndf$steps),"steps"] <-
 ```r
 nsumbydate <- aggregate(ndf$steps, by=list(date=ndf$date), FUN=sum)
 par(mar=c(5,4,4,2))
-hist(nsumbydate$x, col="blue", main="New total no. of steps taken each day", xlab="Number of steps")
+hist(nsumbydate$x, col="blue", main="New total no. of steps taken each day", 
+     xlab="Number of steps")
 ```
 
 ![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8.png) 
@@ -209,9 +211,10 @@ ndf[weekdays(as.Date(ndf$date)) %in% c("Saturday","Sunday") , "typeofday"] <- "w
 
 ```r
 library(lattice)
-navebyinterval <- aggregate(ndf$steps, by=list(interval=ndf$interval, typeofday=ndf$typeofday), FUN=mean)
-xyplot(x ~ interval | typeofday, data = navebyinterval, panel = panel.lines, layout = c(1,2), 
-       xlab="Interval", ylab="Average number of steps")  
+navebyinterval <- aggregate(ndf$steps, by=list(interval=ndf$interval, 
+                                               typeofday=ndf$typeofday), FUN=mean)
+xyplot(x ~ interval | typeofday, data = navebyinterval, panel = panel.lines, 
+       layout = c(1,2), xlab="Interval", ylab="Average number of steps")  
 ```
 
 ![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10.png) 
